@@ -54,6 +54,10 @@ st.sidebar.markdown("""
 - Pastikan wajah dan badan bagian atas terlihat jelas di kamera.
 - Pencahayaan cukup terang.
 - Info postur, durasi, dan peringatan akan tampil di atas video.
+
+© 2025 Akmal Aufa Alim
+
+Aplikasi ini dikembangkan untuk membantu pengguna dalam memantau postur tubuh mereka secara real-time.
 """)
 
 # VideoProcessor untuk streamlit-webrtc
