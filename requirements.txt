@@ -4,3 +4,4 @@ numpy
 mediapipe
 joblib
 scikit-learn
+streamlit-webrtc
