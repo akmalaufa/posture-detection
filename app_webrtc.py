@@ -47,8 +47,8 @@ if "last_posture" not in st.session_state:
     st.session_state.warning_shown = False
 
 # Sidebar tampilan info
-st.set_page_config(layout="wide", page_title="Prediksi Postur Tubuh Real-Time (WebRTC)")
-st.title("📸 Prediksi Postur Tubuh Real-Time (WebRTC)")
+st.set_page_config(layout="wide", page_title="Posebrina - Prediksi Postur Tubuh Real-Time (WebRTC)")
+st.title("📸 Posebrina - Prediksi Postur Tubuh Real-Time (WebRTC)")
 st.sidebar.header("📊 Informasi Postur")
 st.sidebar.markdown("""
 - Pastikan wajah dan badan bagian atas terlihat jelas di kamera.
