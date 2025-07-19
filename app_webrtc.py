@@ -85,6 +85,13 @@ class PostureProcessor(VideoProcessorBase):
         pred = model.predict(scaled)
         posture = label_encoder.inverse_transform(pred)[0]
 
+        # Debug: Print prediksi setiap 30 frame (sekitar 1 detik)
+        if not hasattr(self, 'frame_count'):
+            self.frame_count = 0
+        self.frame_count += 1
+        if self.frame_count % 30 == 0:
+            print(f"Debug - Keypoints sum: {np.sum(keypoints):.3f}, Predicted: {posture}")
+
         # Gambar landmark pada frame
         annotated = image_rgb.copy()
         if results.pose_landmarks:
@@ -146,12 +153,5 @@ webrtc_streamer(
     mode=WebRtcMode.SENDRECV,
     video_processor_factory=PostureProcessor,
     media_stream_constraints={"video": True, "audio": False},
-    async_processing=True,
-    rtc_configuration={
-        "iceServers": [
-            {"urls": ["stun:stun.l.google.com:19302"]},
-            {"urls": ["stun:stun1.l.google.com:19302"]},
-            {"urls": ["stun:stun2.l.google.com:19302"]},
-        ]
-    }
+    async_processing=True
 )
