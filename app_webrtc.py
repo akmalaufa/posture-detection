@@ -59,6 +59,12 @@ st.sidebar.markdown("""
 
 Aplikasi ini dikembangkan untuk membantu pengguna dalam memantau postur tubuh mereka secara real-time.
 """)
+st.sidebar.warning(
+    "⚠️ Jika webcam tidak muncul atau muncul pesan 'Connection is taking longer than expected', "
+    "coba gunakan browser atau jaringan lain. "
+    "Masalah ini terjadi karena keterbatasan koneksi cloud (WebRTC/STUN/TURN). "
+    "Aplikasi akan berjalan lancar di jaringan yang mendukung koneksi langsung."
+)
 
 # VideoProcessor untuk streamlit-webrtc
 class PostureProcessor(VideoProcessorBase):
