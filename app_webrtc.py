@@ -1,3 +1,6 @@
+import socket
+socket.has_ipv6 = False
+
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer, VideoProcessorBase, WebRtcMode
 import av
@@ -70,16 +73,10 @@ st.sidebar.warning(
 class PostureProcessor(VideoProcessorBase):
     def __init__(self):
         self.pose = mp_pose.Pose()
-        # Inisialisasi session_state jika belum ada
-        if "last_posture" not in st.session_state:
-            st.session_state.last_posture = None
-            st.session_state.start_time = time.time()
-            st.session_state.duration = 0.0
-            st.session_state.warning_shown = False
-        self.last_posture = st.session_state.last_posture
-        self.start_time = st.session_state.start_time
-        self.duration = st.session_state.duration
-        self.warning_shown = st.session_state.warning_shown
+        self.last_posture = None
+        self.start_time = time.time()
+        self.duration = 0.0
+        self.warning_shown = False
         self.last_update = time.time()
 
     def recv(self, frame: av.VideoFrame) -> av.VideoFrame:
@@ -162,9 +159,12 @@ webrtc_streamer(
     async_processing=True,
     rtc_configuration={
         "iceServers": [
-            {"urls": ["stun:stun.l.google.com:19302"]},
-            {"urls": ["stun:stun1.l.google.com:19302"]},
-            {"urls": ["stun:stun2.l.google.com:19302"]},
-        ]
+            {
+                "urls": ["turn:posebrina.metered.live:443?transport=tcp"],
+                "username": st.secrets["TURN_USERNAME"],
+                "credential": st.secrets["TURN_PASSWORD"]
+            }
+        ],
+        "iceTransportPolicy": "relay"
     }
 )

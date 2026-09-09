@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  posebrina:
+    image: akmalaufa/posebrina:v1
+    container_name: posebrina_app
+    ports:
+      - "8502:8501" # Port VPS (8502) diarahkan ke Port Streamlit di kontainer (8501)
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Jakarta
