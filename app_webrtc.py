@@ -8,16 +8,7 @@ import joblib
 import time
 from datetime import timedelta
 
-# Auto-install mediapipe bypass for Streamlit Cloud
-import subprocess
-import sys
-try:
-    import mediapipe as mp
-    _ = mp.solutions  # Test if it's the real Mediapipe
-except (ImportError, AttributeError):
-    print("Membasmi Mediapipe palsu dan menginstall versi 0.10.21...")
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "--no-deps", "--force-reinstall", "--ignore-installed", "mediapipe==0.10.21"])
-    import mediapipe as mp
+import mediapipe as mp
 
 from streamlit_webrtc import webrtc_streamer, VideoProcessorBase, WebRtcMode
 import av
