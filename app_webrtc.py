@@ -13,7 +13,10 @@ import subprocess
 import sys
 try:
     import mediapipe as mp
-except ImportError:
+    _ = mp.solutions  # Test if it's the real Mediapipe
+except (ImportError, AttributeError):
+    print("Membasmi Mediapipe palsu dan menginstall versi 0.10.21...")
+    subprocess.check_call([sys.executable, "-m", "pip", "uninstall", "-y", "mediapipe"])
     subprocess.check_call([sys.executable, "-m", "pip", "install", "--no-deps", "mediapipe==0.10.21"])
     import mediapipe as mp
 
