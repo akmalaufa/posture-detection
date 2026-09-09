@@ -2,14 +2,23 @@ import socket
 socket.has_ipv6 = False
 
 import streamlit as st
-from streamlit_webrtc import webrtc_streamer, VideoProcessorBase, WebRtcMode
-import av
 import cv2
 import numpy as np
-import mediapipe as mp
 import joblib
 import time
 from datetime import timedelta
+
+# Auto-install mediapipe bypass for Streamlit Cloud
+import subprocess
+import sys
+try:
+    import mediapipe as mp
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "--no-deps", "mediapipe==0.10.21"])
+    import mediapipe as mp
+
+from streamlit_webrtc import webrtc_streamer, VideoProcessorBase, WebRtcMode
+import av
 
 # Load model, scaler, dan label encoder
 model = joblib.load("best-model/mlp_posture_model.pkl")
