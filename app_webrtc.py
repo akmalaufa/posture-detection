@@ -164,9 +164,11 @@ webrtc_streamer(
               {"urls": ["stun:stun.l.google.com:19302"]},
               {
                   "urls": [
-                      "turn:posebrina.metered.live:80",
-                      "turn:posebrina.metered.live:443",
-                      "turn:posebrina.metered.live:443?transport=tcp"
+                      "stun:stun.relay.metered.ca:80",
+                      "turn:global.relay.metered.ca:80",
+                      "turn:global.relay.metered.ca:80?transport=tcp",
+                      "turn:global.relay.metered.ca:443",
+                      "turns:global.relay.metered.ca:443?transport=tcp"
                   ],
                   "username": st.secrets["TURN_USERNAME"],
                   "credential": st.secrets["TURN_PASSWORD"]
