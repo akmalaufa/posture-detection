@@ -160,13 +160,17 @@ webrtc_streamer(
     media_stream_constraints={"video": True, "audio": False},
     async_processing=True,
     rtc_configuration={
-        "iceServers": [
-            {
-                "urls": ["turn:posebrina.metered.live:443?transport=tcp"],
-                "username": st.secrets["TURN_USERNAME"],
-                "credential": st.secrets["TURN_PASSWORD"]
-            }
-        ],
-        "iceTransportPolicy": "relay"
+          "iceServers": [
+              {"urls": ["stun:stun.l.google.com:19302"]},
+              {
+                  "urls": [
+                      "turn:posebrina.metered.live:80",
+                      "turn:posebrina.metered.live:443",
+                      "turn:posebrina.metered.live:443?transport=tcp"
+                  ],
+                  "username": st.secrets["TURN_USERNAME"],
+                  "credential": st.secrets["TURN_PASSWORD"]
+              }
+          ]
     }
 )
